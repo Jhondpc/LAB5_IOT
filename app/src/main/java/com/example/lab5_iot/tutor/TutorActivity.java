@@ -29,7 +29,7 @@ public class TutorActivity extends AppCompatActivity {
         notificationManager.notify(1, builder.build());
 
         binding.btnDescargarListaTrabajadores.setOnClickListener(v -> {
-            Intent intent = new Intent(this, DescargaListaTrabajadoresActivity.class);
+            Intent intent = new Intent(this, ListaTrabajadoresActivity.class);
             startActivity(intent);
         });
 
