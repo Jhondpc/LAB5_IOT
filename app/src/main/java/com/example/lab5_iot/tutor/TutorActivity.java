@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import com.example.lab5_iot.R;
 import com.example.lab5_iot.databinding.ActivityTutorBinding;
-
+tuto
 public class TutorActivity extends AppCompatActivity {
     ActivityTutorBinding binding;
     @Override
