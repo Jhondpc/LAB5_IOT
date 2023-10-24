@@ -20,4 +20,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query(value = "UPDATE hr_v2.employees SET meeting = 1, meeting_date = NOW() WHERE employee_id = ?1", nativeQuery = true)
     void asignarCita(int employeeId);
 
+    //Insertar Feedback
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE hr_v2.employees SET employee_feedback = ?1 WHERE employee_id = ?2", nativeQuery = true)
+    void insertarFeedback(String feedback, int employeeId);
+
 }

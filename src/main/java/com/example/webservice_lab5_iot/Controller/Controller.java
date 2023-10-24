@@ -56,4 +56,23 @@ public class Controller {
         }
     }
 
+    @PostMapping(value = "/insertarFeedback", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public ResponseEntity<HashMap<String, String>> insertarFeedback(
+            @RequestParam("employeeId") int employeeId,
+            @RequestParam("feedback") String feedback) {
+        HashMap<String, String> hashMap = new HashMap<>();
+
+        Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
+        if (optionalEmployee.isPresent()) {
+            employeeRepository.insertarFeedback(feedback, employeeId);
+            hashMap.put("status", "Feedback insertado");
+            return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
+        } else {
+            hashMap.put("status", "Error");
+            hashMap.put("msg", "El empleado no se encontró en la base de datos o no existe");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(hashMap);
+        }
+    }
+
+
 }
