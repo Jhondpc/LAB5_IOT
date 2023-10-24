@@ -54,6 +54,6 @@ public class Employee {
     @Column(name = "meeting_date")
     private Timestamp meetingDate;
     @Basic
-    @Column(name = "employee_feedback")
+    @Column(name = "employee_feedback", length = 250)
     private String employeeFeedback;
 }

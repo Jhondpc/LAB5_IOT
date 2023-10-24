@@ -40,7 +40,7 @@ public class Controller {
         return ResponseEntity.ok(hashMap);
     }
 
-    @PostMapping(value = "/asignarTutoria",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    @PostMapping(value = "/tutor/asignarTutoria",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity<HashMap<String,String>> asignarTutoria(Integer id){
         HashMap<String,String> hashMap = new HashMap<>();
         Optional<Employee> optionalProduct = employeeRepository.findById(id);
@@ -56,7 +56,7 @@ public class Controller {
         }
     }
 
-    @PostMapping(value = "/insertarFeedback", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping(value = "/tutor/insertarFeedback", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity<HashMap<String, String>> insertarFeedback(
             @RequestParam("employeeId") int employeeId,
             @RequestParam("feedback") String feedback) {
@@ -64,7 +64,10 @@ public class Controller {
 
         Optional<Employee> optionalEmployee = employeeRepository.findById(employeeId);
         if (optionalEmployee.isPresent()) {
-            employeeRepository.insertarFeedback(feedback, employeeId);
+            Employee employee = optionalEmployee.get();
+            employee.setEmployeeFeedback(feedback); // Actualizar el campo de feedback
+            employeeRepository.save(employee); // Guardar los cambios en la base de datos
+
             hashMap.put("status", "Feedback insertado");
             return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
         } else {

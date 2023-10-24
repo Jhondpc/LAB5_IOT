@@ -5,6 +5,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,13 +18,16 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     //Asignar cita a trabajador
     @Transactional
     @Modifying
-    @Query(value = "UPDATE hr_v2.employees SET meeting = 1, meeting_date = NOW() WHERE employee_id = ?1", nativeQuery = true)
+    @Query(value = "UPDATE `hr_v2`.`employees` SET `meeting` = 1, `meeting_date` = NOW() WHERE `employee_id` = ?1", nativeQuery = true)
     void asignarCita(int employeeId);
 
     //Insertar Feedback
+
+
     @Transactional
     @Modifying
-    @Query(value = "UPDATE hr_v2.employees SET employee_feedback = ?1 WHERE employee_id = ?2", nativeQuery = true)
-    void insertarFeedback(String feedback, int employeeId);
+    @Query(value = "UPDATE Employee e SET e.employeeFeedback = :feedback WHERE e.employeeId = :employeeId")
+    void insertarFeedback(@Param("feedback") String feedback, @Param("employeeId") int employeeId);
+
 
 }
