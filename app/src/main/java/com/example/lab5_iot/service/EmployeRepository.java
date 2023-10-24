@@ -23,4 +23,9 @@ public interface EmployeRepository {
     @FormUrlEncoded
     @POST("/tutor/asignarTutoria")
     Call<Integer> asignarTutoria(@Field("id") Integer id);
+
+    @FormUrlEncoded
+    @POST("/tutor/insertarFeedback")
+    Call<String> insertarFeedback(@Field("employeeId") Integer employeeId, @Field("feedback") String feedback);
+
 }

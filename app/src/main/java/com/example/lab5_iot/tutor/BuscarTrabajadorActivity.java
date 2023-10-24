@@ -41,10 +41,10 @@ public class BuscarTrabajadorActivity extends AppCompatActivity {
             String codigoStr = inputCodigo.getEditText().getText().toString();
 
             if (codigoStr.isEmpty()) {
-                showAlertDialog("Debe ingresar el código del tutor.");
+                showAlertDialog("Debe ingresar el código del trabajador.");
             } else {
                 if (!isNumeric(codigoStr)) {
-                    showAlertDialog("Debe ingresar un número como código de tutor.");
+                    showAlertDialog("Debe ingresar un número como código del trabajador.");
                 } else {
                     int codigoTrabajador = Integer.parseInt(codigoStr);
                     EmployeRepository employeRepository = new Retrofit.Builder()
