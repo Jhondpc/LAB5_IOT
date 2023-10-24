@@ -5,11 +5,10 @@ import com.example.webservice_lab5_iot.Repository.EmployeeRepository;
 import jakarta.persistence.Entity;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,6 +38,23 @@ public class Controller {
             hashMap.put("msg","No existe un trabajador con ese ID");
         }
         return ResponseEntity.ok(hashMap);
+    }
+
+    @PostMapping(value = "/asignarTutoria",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public ResponseEntity<HashMap<String,String>> asignarTutoria(Integer id){
+        HashMap<String,String> hashMap = new HashMap<>();
+        Optional<Employee> optionalProduct = employeeRepository.findById(id);
+        if(optionalProduct.isPresent()){
+            Employee employee = optionalProduct.get();
+            employee.setMeeting((byte) 1);
+            employeeRepository.save(employee);
+            hashMap.put("status", "Empleado actualizado");
+            return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
+        }else{
+            hashMap.put("status","Error");
+            hashMap.put("msg","El empleado no se encontró en la base de datos o no existe");
+            return ResponseEntity.ok(hashMap);
+        }
     }
 
 }
