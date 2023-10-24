@@ -3,6 +3,7 @@ package com.example.lab5_iot.service;
 import com.example.lab5_iot.entity.Employee;
 import com.example.lab5_iot.entity.EmployeeDto;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
@@ -26,6 +27,6 @@ public interface EmployeRepository {
 
     @FormUrlEncoded
     @POST("/tutor/insertarFeedback")
-    Call<String> insertarFeedback(@Field("employeeId") Integer employeeId, @Field("feedback") String feedback);
+    Call<HashMap<String, String>> insertarFeedback(@Field("employeeId") Integer employeeId, @Field("feedback") String feedback);
 
 }

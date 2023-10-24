@@ -6,6 +6,7 @@ import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -37,14 +38,14 @@ public class AsignarTutoriaActivity extends AppCompatActivity {
         binding = ActivityAsignarTutoriaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Intent intent = getIntent();
+        String ip = intent.getStringExtra("ip");
+
         binding.button.setOnClickListener(v -> {
             TextInputLayout inputCodigoTutor = binding.inputCodigoTutor;
             String codigoTutorStr = inputCodigoTutor.getEditText().getText().toString();
             TextInputLayout inputCodigoEmpleado = binding.inputCodigoEmpleado;
             String codigoEmpleadoStr = inputCodigoEmpleado.getEditText().getText().toString();
-
-
-
 
             if (codigoTutorStr.isEmpty() || codigoEmpleadoStr.isEmpty()) {
                 showAlertDialog("Se deben ingresar todos los campos obligatoriamente.");
@@ -55,7 +56,7 @@ public class AsignarTutoriaActivity extends AppCompatActivity {
                     int codigoTutor = Integer.parseInt(codigoTutorStr);
                     int codigoEmpleado = Integer.parseInt(codigoEmpleadoStr);
                     EmployeRepository employeRepository = new Retrofit.Builder()
-                            .baseUrl("http://192.168.0.2:8080")
+                            .baseUrl("http://"+ip+":8080")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build().create(EmployeRepository.class);
                     employeRepository.obtenerTrabajador(codigoEmpleado).enqueue(new Callback<EmployeeDto>() {

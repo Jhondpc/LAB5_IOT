@@ -6,6 +6,7 @@ import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -36,6 +37,9 @@ public class BuscarTrabajadorActivity extends AppCompatActivity {
         binding = ActivityBuscarTrabajadorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Intent intent = getIntent();
+        String ip = intent.getStringExtra("ip");
+
         binding.button.setOnClickListener(v -> {
             TextInputLayout inputCodigo = binding.inputCodigo;
             String codigoStr = inputCodigo.getEditText().getText().toString();
@@ -48,7 +52,7 @@ public class BuscarTrabajadorActivity extends AppCompatActivity {
                 } else {
                     int codigoTrabajador = Integer.parseInt(codigoStr);
                     EmployeRepository employeRepository = new Retrofit.Builder()
-                            .baseUrl("http://192.168.0.2:8080")
+                            .baseUrl("http://"+ip+":8080")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build().create(EmployeRepository.class);
                     employeRepository.obtenerTrabajador(codigoTrabajador).enqueue(new Callback<EmployeeDto>() {

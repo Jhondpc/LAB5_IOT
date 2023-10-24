@@ -19,6 +19,9 @@ public class TutorActivity extends AppCompatActivity {
         binding = ActivityTutorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Intent intent = getIntent();
+        String ip = intent.getStringExtra("ip");
+
         String channelId = "canalTutor";
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
                 .setSmallIcon(R.drawable.baseline_notification_important_24)
@@ -29,18 +32,21 @@ public class TutorActivity extends AppCompatActivity {
         notificationManager.notify(1, builder.build());
 
         binding.btnDescargarListaTrabajadores.setOnClickListener(v -> {
-            Intent intent = new Intent(this, ListaTrabajadoresActivity.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(this, ListaTrabajadoresActivity.class);
+            intent1.putExtra("ip",ip);
+            startActivity(intent1);
         });
 
         binding.btnBuscarTrabajador.setOnClickListener(v -> {
-            Intent intent = new Intent(this, BuscarTrabajadorActivity.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(this, BuscarTrabajadorActivity.class);
+            intent1.putExtra("ip",ip);
+            startActivity(intent1);
         });
 
         binding.btnAsignarTutoria.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AsignarTutoriaActivity.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(this, AsignarTutoriaActivity.class);
+            intent1.putExtra("ip",ip);
+            startActivity(intent1);
         });
     }
 }

@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -34,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,6 +50,9 @@ public class TrabajadorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTrabajadorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Intent intent = getIntent();
+        String ip = intent.getStringExtra("ip");
 
         String channelId = "canalTrabajador";
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
@@ -76,7 +81,7 @@ public class TrabajadorActivity extends AppCompatActivity {
                 } else {
                     int codigoTrabajador = Integer.parseInt(codigoStr);
                     EmployeRepository employeRepository = new Retrofit.Builder()
-                            .baseUrl("http://192.168.0.2:8080")
+                            .baseUrl("http://"+ip+":8080")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build().create(EmployeRepository.class);
                     employeRepository.obtenerTrabajador(codigoTrabajador).enqueue(new Callback<EmployeeDto>() {
@@ -122,14 +127,29 @@ public class TrabajadorActivity extends AppCompatActivity {
                                                 if(feedback.isEmpty()){
                                                     showAlertDialog("Debe ingresar un feedback.");
                                                 }else{
-                                                    employeRepository.insertarFeedback(employee.getEmployeeId(), feedback);
-                                                    NotificationCompat.Builder builder1 = new NotificationCompat.Builder(TrabajadorActivity.this, channelId)
-                                                            .setSmallIcon(R.drawable.baseline_notification_important_24)
-                                                            .setContentTitle("Feedback enviado de manera exitosa.")
-                                                            .setPriority(NotificationCompat.PRIORITY_HIGH)
-                                                            .setAutoCancel(true);
-                                                    NotificationManager notificationManager1 = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                                                    notificationManager1.notify(1, builder1.build());
+                                                    employeRepository.insertarFeedback(employee.getEmployeeId(), feedback).enqueue(new Callback<HashMap<String, String>>() {
+                                                        @Override
+                                                        public void onResponse(Call<HashMap<String, String>> call, Response<HashMap<String, String>> response) {
+                                                            if(response.isSuccessful()){
+                                                                HashMap<String, String> feedbackResponse = response.body();
+                                                                if(feedbackResponse != null){
+                                                                    String status = feedbackResponse.get("status");
+                                                                    NotificationCompat.Builder builder1 = new NotificationCompat.Builder(TrabajadorActivity.this, channelId)
+                                                                            .setSmallIcon(R.drawable.baseline_notification_important_24)
+                                                                            .setContentTitle("Feedback enviado de manera exitosa.")
+                                                                            .setPriority(NotificationCompat.PRIORITY_HIGH)
+                                                                            .setAutoCancel(true);
+                                                                    NotificationManager notificationManager1 = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                                                    notificationManager1.notify(1, builder1.build());
+                                                                }
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onFailure(Call<HashMap<String, String>> call, Throwable t) {
+
+                                                        }
+                                                    });
                                                 }
                                             });
                                         }

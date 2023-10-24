@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.lab5_iot.databinding.ActivityMainBinding;
 import com.example.lab5_iot.trabajador.TrabajadorActivity;
@@ -18,19 +19,24 @@ import com.example.lab5_iot.tutor.TutorActivity;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
+    String ip = "10.100.253.19";   //CAMBIAR LA IP DE SU PC EN ESTE CAMPO
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Toast.makeText(this, "Recuerde cambiar su ip en MainActivity", Toast.LENGTH_SHORT).show();
+
         binding.buttonTutor.setOnClickListener(view -> {
             Intent intent = new Intent(this, TutorActivity.class);
+            intent.putExtra("ip",ip);
             startActivity(intent);
         });
 
         binding.buttonTrabajador.setOnClickListener(view -> {
             Intent intent = new Intent(this, TrabajadorActivity.class);
+            intent.putExtra("ip",ip);
             startActivity(intent);
         });
 
