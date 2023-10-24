@@ -46,8 +46,7 @@ public class Controller {
         Optional<Employee> optionalProduct = employeeRepository.findById(id);
         if(optionalProduct.isPresent()){
             Employee employee = optionalProduct.get();
-            employee.setMeeting((byte) 1);
-            employeeRepository.save(employee);
+            employeeRepository.asignarCita(employee.getEmployeeId());
             hashMap.put("status", "Empleado actualizado");
             return ResponseEntity.status(HttpStatus.CREATED).body(hashMap);
         }else{
