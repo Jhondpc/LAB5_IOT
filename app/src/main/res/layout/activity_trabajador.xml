@@ -7,6 +7,7 @@
     android:background="#F3A488"
     tools:context=".trabajador.TrabajadorActivity">
 
+
     <Button
         android:id="@+id/button2"
         android:layout_width="60dp"
