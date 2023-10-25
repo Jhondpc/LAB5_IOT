@@ -27,6 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:layout_constraintVertical_bias="0.23" />
 
+
     <Button
         android:id="@+id/buttonTrabajador"
         android:layout_width="174dp"
@@ -38,27 +39,28 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:iconTint="#0E0D0D"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/buttonTutor"
         app:layout_constraintStart_toStartOf="@+id/buttonTutor"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTutor" />
-
+        app:layout_constraintTop_toBottomOf="@+id/buttonTutor"
+        app:layout_constraintVertical_bias="0.083" />
 
     <Button
         android:id="@+id/buttonTutor"
         android:layout_width="160dp"
         android:layout_height="56dp"
-        android:text="Tutor"
+        android:layout_marginTop="120dp"
         android:backgroundTint="#FFFFFF"
+        android:text="Tutor"
         android:textColor="#CA603F"
         android:textSize="24sp"
         android:textStyle="bold"
         app:iconTint="#020202"
         app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:rippleColor="#040303"
-        tools:layout_editor_absoluteY="458dp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:rippleColor="#040303" />
 
     <TextView
         android:id="@+id/textView5"

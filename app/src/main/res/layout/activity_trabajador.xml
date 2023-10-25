@@ -125,12 +125,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputFeedback"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:hint="Escriba aquí"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -147,6 +149,7 @@
             android:inputType="text"
             android:paddingStart="24dp" />
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
         android:id="@+id/button3"
         android:layout_width="170dp"
