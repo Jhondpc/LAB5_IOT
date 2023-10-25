@@ -4,18 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#F3A488"
     tools:context=".tutor.ListaTrabajadoresActivity">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:text="LISTA DE TRABAJADORES"
+        android:layout_marginTop="64dp"
+        android:fontFamily="sans-serif-black"
         android:gravity="center_horizontal"
-        android:text="Descarga de lista de trabajadores"
-        android:textSize="34sp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
         android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,17 +28,18 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:text="Ingrese el código de tutor"
-        android:textSize="16sp"
+        android:layout_marginTop="88dp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputCodigo"
-        android:layout_width="300dp"
+        android:layout_width="245dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Código"
@@ -58,13 +62,20 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="174dp"
-        android:layout_height="51dp"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
         android:layout_marginTop="48dp"
-        android:text="Descargar Lista"
-        android:textSize="16sp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Descargar"
+        android:textColor="#CA603F"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:iconTint="#020202"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputCodigo" />
+        app:layout_constraintTop_toBottomOf="@+id/inputCodigo"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,20 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#EBEF9575"
     tools:context=".tutor.AsignarTutoriaActivity">
+
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:text="ASIGNAR TUTARÍA"
+        android:layout_marginTop="64dp"
+        android:fontFamily="sans-serif-black"
         android:gravity="center_horizontal"
-        android:text="Asignar tutoría"
-        android:textSize="34sp"
+        android:textColor="#FFFFFF"
+        android:textSize="40sp"
         android:textStyle="bold"
+        android:typeface="sans"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,20 +28,21 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="68dp"
+        android:fontFamily="sans-serif-black"
         android:text="Ingrese el código de tutor"
-        android:textSize="16sp"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputCodigoTutor"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Código de tutor"
+        android:layout_width="238dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="24dp"
+        android:hint="Código"
         app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -56,16 +60,17 @@
             android:paddingStart="24dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Ingrese el código del trabajador"
-        android:textSize="16sp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputCodigoTutor" />
 
@@ -73,8 +78,8 @@
         android:id="@+id/inputCodigoEmpleado"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Código del trabajador"
+        android:layout_marginTop="24dp"
+        android:hint="Código"
         app:boxBackgroundColor="@color/white"
         app:boxCornerRadiusBottomEnd="20dp"
         app:boxCornerRadiusBottomStart="20dp"
@@ -94,12 +99,17 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="174dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="84dp"
+        android:backgroundTint="#FFFFFF"
         android:text="Asignar"
-        android:textSize="16sp"
+        android:textColor="#CA603F"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:iconTint="#020202"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputCodigoEmpleado" />
 
